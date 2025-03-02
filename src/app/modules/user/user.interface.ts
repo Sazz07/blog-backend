@@ -5,7 +5,7 @@ import { USER_ROLE } from './user.utils';
 export type TUSerRole = keyof typeof USER_ROLE;
 
 export type TUser = {
-  id: string;
+  _id: string;
   name: string;
   email: string;
   password: string;
