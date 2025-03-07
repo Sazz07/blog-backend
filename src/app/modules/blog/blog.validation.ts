@@ -45,7 +45,7 @@ const updateBlogSchema = z.object({
   }),
 });
 
-export const blogValidations = {
+export const BlogValidations = {
   createBlogSchema,
   updateBlogSchema,
 };

@@ -11,7 +11,7 @@ const auth = (...requiredRule: TUSerRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const bearerToken = req.headers.authorization;
 
-    if (!bearerToken || bearerToken.startsWith('Bearer ')) {
+    if (!bearerToken || !bearerToken.startsWith('Bearer ')) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
     }
 
@@ -25,8 +25,6 @@ const auth = (...requiredRule: TUSerRole[]) => {
       token,
       config.jwt_access_secret as string,
     ) as JwtPayload;
-
-    console.log(decoded);
 
     const { email, role } = decoded;
 
