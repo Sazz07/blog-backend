@@ -81,7 +81,7 @@ const getBlogsFormDB = async (query: Record<string, unknown>) => {
     }),
     query,
   )
-    .search(['title, content'])
+    .search(['title', 'content'])
     .filter()
     .sort()
     .paginate()
