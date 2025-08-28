@@ -13,3 +13,6 @@ export const createToken = (
     expiresIn,
   } as SignOptions);
 };
+
+export const verifyToken = (token: string, secret: string) =>
+  jwt.verify(token, secret) as jwt.JwtPayload;

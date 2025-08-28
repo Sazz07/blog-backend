@@ -11,13 +11,19 @@ export type TUser = {
   password: string;
   role: TUSerRole;
   isBlocked?: boolean;
+  passwordChangedAt?: Date;
 };
 
 export interface UserModel extends Model<TUser> {
-  isUserExists(email: string): Promise<TUser>;
+  isUserExists(email: string): Promise<TUser | null>;
 
   isPasswordMatched(
     plainTextPassword: string,
     hashedPassword: string,
   ): Promise<boolean>;
+
+  isJWTissuedBeforePasswordChange: (
+    passwordChangedAt: Date,
+    jwtIssuedTimestamp: number,
+  ) => boolean;
 }
