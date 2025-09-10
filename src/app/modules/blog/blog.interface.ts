@@ -5,4 +5,5 @@ export type TBlog = {
   content: string;
   author: Types.ObjectId;
   isPublished?: boolean;
+  images?: string[];
 };

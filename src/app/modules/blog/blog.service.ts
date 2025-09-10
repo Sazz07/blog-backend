@@ -20,6 +20,19 @@ const createBlogIntoDB = async (author: string, payload: TBlog) => {
   return result;
 };
 
+const getSingleBlogFromDB = async (blogId: string) => {
+  const blog = await Blog.findById(blogId).populate({
+    path: 'author',
+    select: '-role -isBlocked',
+  });
+
+  if (!blog) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Blog not found');
+  }
+
+  return blog;
+};
+
 const updateBlogIntoDB = async (
   blogId: string,
   author: string,
@@ -94,6 +107,7 @@ const getBlogsFormDB = async (query: Record<string, unknown>) => {
 
 export const BlogServices = {
   createBlogIntoDB,
+  getSingleBlogFromDB,
   updateBlogIntoDB,
   getBlogsFormDB,
   deleteBlogFromDB,

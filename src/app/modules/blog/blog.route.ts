@@ -25,4 +25,6 @@ router.delete('/:id', auth(USER_ROLE.user), BlogController.deleteBlog);
 
 router.get('/', BlogController.getBlogs);
 
+router.get('/:id', BlogController.getSingleBlog);
+
 export const BlogRoutes = router;
